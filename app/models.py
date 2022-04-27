@@ -117,10 +117,19 @@ class Inventory(models.Model):
     materialName = models.CharField(max_length = 200)     #varchar(20)
     threshQty = models.FloatField()      #int
     costPrice = models.FloatField()      #int/float
-    orderedStatus = models.BigIntegerField() #int
+    orderedStatus = models.BooleanField() #boolean
 
     def __str__(self): 
         return self.materialName
+
+    @property
+    def checkQty(self):
+        if self.materialQty <= self.threshQty and self.orderedStatus is False:
+            return "Order pending"
+        elif self.materialQty <= self.threshQty and self.orderedStatus is True: 
+            return "Ordered"
+        else:
+            return "Sufficient Stock"
 
 class InventoryDistributor(models.Model):
     materialID = models.ForeignKey(Inventory, on_delete = models.CASCADE, )      #int

@@ -20,4 +20,10 @@ class WaiterinfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Waiter
         fields = ('waiterID', 'firstName', 'lastName','currentOrder','outletID')
+
+class InventoryInfoSerializer(serializers.ModelSerializer):
+    checkQty = Inventory.checkQty
+    class Meta:
+        model = Inventory
+        fields = ('materialID', 'materialName', 'materialQty', 'costPrice', 'checkQty', 'threshQty' )
     
