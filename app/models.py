@@ -131,12 +131,22 @@ class Inventory(models.Model):
         else:
             return "Sufficient Stock"
 
+    @property
+    def distributorNames(self):
+        distributors = InventoryDistributor.objects.filter(materialID = self.materialID).values('distributorName')
+        return distributors
+
 class InventoryDistributor(models.Model):
     materialID = models.ForeignKey(Inventory, on_delete = models.CASCADE, )      #int
     distributorName = models.CharField(max_length = 200 )  #varchar(20)
-
+    
     class Meta:
         unique_together = (("materialID", "distributorName"))
+
+    @property
+    def materialName(self):
+        return self.materialID.materialName
+
 
 class Creates(models.Model):
     #customerID = models.ForeignKey(CustomerInfo, on_delete = models.CASCADE, )      #int

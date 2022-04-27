@@ -25,5 +25,5 @@ class InventoryInfoSerializer(serializers.ModelSerializer):
     checkQty = Inventory.checkQty
     class Meta:
         model = Inventory
-        fields = ('materialID', 'materialName', 'materialQty', 'costPrice', 'checkQty', 'threshQty' )
-    
+        fields = ('materialID', 'materialName', 'materialQty', 'costPrice', 'checkQty', 'threshQty','distributorNames' )
+

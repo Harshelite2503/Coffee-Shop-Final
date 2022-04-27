@@ -9,5 +9,6 @@ urlpatterns = [
     path('waiter/', WaiterList.as_view()),
     path('waiter/<int:pk>/', WaiterDetail.as_view()),
     path('inventory/', InventoryList.as_view() ),
-    path('inventory/<int:pk>', InventoryDetail.as_view())
+    path('inventory/<int:pk>', InventoryDetail.as_view()),
+    
 ]
