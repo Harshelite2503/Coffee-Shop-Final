@@ -14,4 +14,10 @@ class BillInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bill
         fields = ('orderID','customerName','cost', 'total')
+
+class WaiterinfoSerializer(serializers.ModelSerializer):
+    currentOrder = Waiter.currentOrder
+    class Meta:
+        model = Waiter
+        fields = ('waiterID', 'firstName', 'lastName','currentOrder','outletID')
     

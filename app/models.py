@@ -22,6 +22,10 @@ class Waiter(models.Model):
     def __str__(self): 
         return self.firstName
 
+    @property
+    def currentOrder(self):
+        return Bill.objects.filter(orderWaiter = self.waiterID).values('orderID')
+
 
 class CustomerInfo(models.Model):
     customerID = models.AutoField(primary_key= True)                                     #int
@@ -92,6 +96,8 @@ class WaiterOrderID(models.Model):
 
     class Meta: 
         unique_together = (("waiterID", "orderID"))
+
+    
 
 class ItemDetails(models.Model):
     itemID = models.AutoField(primary_key=True)           #int

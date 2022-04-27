@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import CustomerInfo, Bill, Outlet, OutletPhone, Waiter, WaiterOrderID, ItemDetails, Inventory, InventoryDistributor,Creates
-from .serializers import CustomerInfoSerializer,BillInfoSerializer
+from .serializers import CustomerInfoSerializer,BillInfoSerializer, WaiterinfoSerializer
 # Create your views here.
 
 class CustomerList(generics.ListAPIView):
@@ -19,4 +19,12 @@ class BillList(generics.ListAPIView):
 class BillDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Bill.objects.all()
     serializer_class = BillInfoSerializer
+
+class WaiterList(generics.ListAPIView):
+    queryset = Waiter.objects.all()
+    serializer_class = WaiterinfoSerializer
+
+class WaiterDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Waiter.objects.all()
+    serializer_class = WaiterinfoSerializer
 
