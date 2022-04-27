@@ -10,8 +10,8 @@ class CustomerInfoSerializer(serializers.ModelSerializer):
 class BillInfoSerializer(serializers.ModelSerializer):
     customerName = Bill.customerName
     cost = Bill.cost
-    
+    total = Bill.total
     class Meta:
         model = Bill
-        fields = ('orderID','customerName','cost')
+        fields = ('orderID','customerName','cost', 'total')
     

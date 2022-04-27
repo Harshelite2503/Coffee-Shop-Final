@@ -49,16 +49,31 @@ class Bill(models.Model):
 
     @property
     def cost(self):
-        it_quant = Creates.objects.filter(orderID = self.orderID).values('itemID', 'itemQty')
-        #for i in it_quant:
-         #   id = it_quant.get('itemID')
-        #    k = ItemDetails.filter(itemID = id).values('itemPrice','itemName')
-        #    i.update(k)
-         #   cost = i.get('itemQty') * i.get('itemPrice')
-          #  i['costPerItem'] = cost
-           # print(it_quant)
-        return it_quant
+        it_quant = Creates.objects.filter(orderID = self.orderID).values('itemID' ,'itemQty')
+        # print(it_quant)
+        buffer = list(it_quant)
+        # print(buffer)
+        for i in buffer:
+            id = i.get('itemID')
+            print(id)
+            k = ItemDetails.objects.filter(itemID = id).values('itemPrice','itemName')
+            buffer_2 = list(k)
+            #print(buffer_2)
+            for j in buffer_2:
+                i['itemPrice'] = j.get('itemPrice')
+                i['itemName'] = j.get('itemName')
+                i['costPerItem'] = i.get('itemPrice') * i.get('itemQty')
         
+        # print(buffer)
+        return buffer
+
+    @property
+    def total(self):
+        l = self.cost
+        sum = 0.00
+        for k in l:
+            sum = sum + k.get('costPerItem')
+        return sum
 
     class Meta:
         unique_together = (("orderID" , "customerID"))

@@ -15,3 +15,8 @@ class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
 class BillList(generics.ListAPIView):
     queryset = Bill.objects.all()
     serializer_class = BillInfoSerializer
+
+class BillDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Bill.objects.all()
+    serializer_class = BillInfoSerializer
+
