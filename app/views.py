@@ -4,15 +4,15 @@ from .models import CustomerInfo, Bill, Outlet, OutletPhone, Waiter, WaiterOrder
 from .serializers import CustomerInfoSerializer,BillInfoSerializer, InventoryInfoSerializer, WaiterinfoSerializer
 # Create your views here.
 
-class CustomerList(generics.ListAPIView):
+class CustomerList(generics.ListCreateAPIView):
     queryset = CustomerInfo.objects.all()
-    serializer_class = CustomerInfoSerializer
+    serializer_class = CustomerInfoSerializer    
 
 class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = CustomerInfo.objects.all()
     serializer_class = CustomerInfoSerializer
 
-class BillList(generics.ListAPIView):
+class BillList(generics.ListCreateAPIView):
     queryset = Bill.objects.all()
     serializer_class = BillInfoSerializer
 
@@ -20,7 +20,7 @@ class BillDetails(generics.RetrieveUpdateDestroyAPIView):
     queryset = Bill.objects.all()
     serializer_class = BillInfoSerializer
 
-class WaiterList(generics.ListAPIView):
+class WaiterList(generics.ListCreateAPIView):
     queryset = Waiter.objects.all()
     serializer_class = WaiterinfoSerializer
 
@@ -28,7 +28,7 @@ class WaiterDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Waiter.objects.all()
     serializer_class = WaiterinfoSerializer
 
-class InventoryList(generics.ListAPIView):
+class InventoryList(generics.ListCreateAPIView):
     queryset = Inventory.objects.all()
     serializer_class = InventoryInfoSerializer
 

@@ -28,14 +28,16 @@ class Waiter(models.Model):
 
 
 class CustomerInfo(models.Model):
-    customerID = models.AutoField(primary_key= True)                                     #int
+    customerID = models.AutoField(primary_key=True)                                     #int
     customerName = models.CharField(max_length = 200)                   #varchar
-    customerPhone = models.CharField(max_length = 20)                   #int/varchar
+    customerPhone = models.CharField(max_length = 10, unique = True)                   #int/varchar
     registrationDate = models.DateField(auto_now = True)                #date
     walletMoney = models.FloatField()                                   #float
     waiterID = models.ForeignKey(Waiter, on_delete = models.CASCADE)    #int
     def __str__(self): 
         return self.customerName
+
+    
 
 class Bill(models.Model):
     orderID = models.AutoField(primary_key= True)
@@ -59,7 +61,7 @@ class Bill(models.Model):
         # print(buffer)
         for i in buffer:
             id = i.get('itemID')
-            print(id)
+            # print(id)
             k = ItemDetails.objects.filter(itemID = id).values('itemPrice','itemName')
             buffer_2 = list(k)
             #print(buffer_2)
