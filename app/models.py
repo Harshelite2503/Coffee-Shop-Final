@@ -32,7 +32,7 @@ class CustomerInfo(models.Model):
     customerName = models.CharField(max_length = 200)                   #varchar
     customerPhone = models.CharField(max_length = 10, unique = True)                   #int/varchar
     registrationDate = models.DateField(auto_now = True)                #date
-    walletMoney = models.FloatField()                                   #float
+    #walletMoney = models.FloatField()                                   #float
     waiterID = models.ForeignKey(Waiter, on_delete = models.CASCADE)    #int
     def __str__(self): 
         return self.customerName
