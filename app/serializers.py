@@ -5,7 +5,7 @@ from .models import CustomerInfo, Bill, Outlet, OutletPhone, Waiter, WaiterOrder
 class CustomerInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerInfo
-        fields = ('customerID', 'customerName', 'customerPhone', 'registrationDate', 'walletMoney', 'waiterID')
+        fields = ('customerID', 'customerName', 'customerPhone', 'registrationDate', 'waiterID')
 
 class BillInfoSerializer(serializers.ModelSerializer):
     customerName = Bill.customerName
