@@ -4,22 +4,22 @@ from django.db.models import Q, CheckConstraint
 
 
 class Outlet(models.Model):
-    outletID = models.AutoField(primary_key=True)  # int
-    outletName = models.CharField(max_length=200)  # varchar(20)
-    area = models.CharField(max_length=200)  # varchar(20)
-    city = models.CharField(max_length=200)  # varchar(20)
-    state = models.CharField(max_length=50)  # varchar(20)
+    outletID = models.AutoField(primary_key = True)  # int
+    outletName = models.CharField(max_length = 200)  # varchar(20)
+    area = models.CharField(max_length = 200)  # varchar(20)
+    city = models.CharField(max_length = 200)  # varchar(20)
+    state = models.CharField(max_length = 50)  # varchar(20)
     pincode = models.PositiveIntegerField()  # int/varchar(20)
 
     class Meta:
         constraints = [
             CheckConstraint(
-                check=Q(outletID__gt=0),
-                name='id1validation'
+                check = Q(outletID__gt = 0),
+                name = 'outletIDvalidation'
             ),
             CheckConstraint(
-                check=Q(pincode__gte=110000) and Q(pincode__lte=999999),
-                name='pincodeValidation'
+                check = Q(pincode__gte = 110000) and Q(pincode__lte = 999999),
+                name = 'pincodeValidation'
             )
         ]
 
@@ -28,17 +28,17 @@ class Outlet(models.Model):
 
 
 class Waiter(models.Model):
-    waiterID = models.AutoField(primary_key=True)  # int
-    firstName = models.CharField(max_length=200)  # varchar(20)
-    lastName = models.CharField(max_length=200)  # varchar(20)
+    waiterID = models.AutoField(primary_key = True)  # int
+    firstName = models.CharField(max_length = 200)  # varchar(20)
+    lastName = models.CharField(max_length = 200)  # varchar(20)
     #waiterRating =  int/float
-    outletID = models.ForeignKey(Outlet, on_delete=models.CASCADE)  # int
+    outletID = models.ForeignKey(Outlet, on_delete = models.CASCADE)  # int
 
     class Meta:
         constraints = [
             CheckConstraint(
-                check=Q(waiterID__gt=0),
-                name='id2validation'
+                check = Q(waiterID__gt = 0),
+                name = 'waiterIDvalidation'
             ),
         ]
 
@@ -47,28 +47,26 @@ class Waiter(models.Model):
 
     @property
     def currentOrder(self):
-        return Bill.objects.filter(orderWaiter=self.waiterID).values('orderID')
+        return Bill.objects.filter(orderWaiter = self.waiterID).values('orderID')
 
 
 class CustomerInfo(models.Model):
-    customerID = models.AutoField(primary_key=True)  # int
-    customerName = models.CharField(max_length=200)  # varchar
-    customerPhone = models.PositiveIntegerField(unique=True)  # int/varchar
-    registrationDate = models.DateField(auto_now=True)  # date
+    customerID = models.AutoField(primary_key = True)  # int
+    customerName = models.CharField(max_length = 200)  # varchar
+    customerPhone = models.PositiveIntegerField(unique = True)  # int/varchar
+    registrationDate = models.DateField(auto_now = True)  # date
     # walletMoney = models.FloatField()                                   #float
-    waiterID = models.ForeignKey(Waiter, on_delete=models.CASCADE)  # int
+    waiterID = models.ForeignKey(Waiter, on_delete = models.CASCADE)  # int
 
     def __str__(self):
         return self.customerName
 
 
 class Bill(models.Model):
-    orderID = models.AutoField(primary_key=True)
-    customerID = models.ForeignKey(
-        CustomerInfo, on_delete=models.CASCADE)  # int
-    orderWaiter = models.ForeignKey(
-        Waiter, on_delete=models.CASCADE)  # int, get waiterID
-    orderDate = models.DateField(auto_now=True)  # date
+    orderID = models.AutoField(primary_key = True)
+    customerID = models.ForeignKey(CustomerInfo, on_delete = models.CASCADE)  # int
+    orderWaiter = models.ForeignKey(Waiter, on_delete = models.CASCADE)  # int, get waiterID
+    orderDate = models.DateField(auto_now = True)  # date
 
     @property
     def customerName(self):
@@ -80,16 +78,14 @@ class Bill(models.Model):
 
     @property
     def cost(self):
-        it_quant = Creates.objects.filter(
-            orderID=self.orderID).values('itemID', 'itemQty')
+        it_quant = Creates.objects.filter(orderID = self.orderID).values('itemID', 'itemQty')
         # print(it_quant)
         buffer = list(it_quant)
         # print(buffer)
         for i in buffer:
             id = i.get('itemID')
             # print(id)
-            k = ItemDetails.objects.filter(
-                itemID=id).values('itemPrice', 'itemName')
+            k = ItemDetails.objects.filter(itemID = id).values('itemPrice', 'itemName')
             buffer_2 = list(k)
             # print(buffer_2)
             for j in buffer_2:
@@ -113,7 +109,7 @@ class Bill(models.Model):
 
 
 class OutletPhone(models.Model):
-    outletID = models.ForeignKey(Outlet, on_delete=models.CASCADE,)  # int
+    outletID = models.ForeignKey(Outlet, on_delete = models.CASCADE,)  # int
     phoneNo = models.PositiveIntegerField()
 
     class Meta:
@@ -121,35 +117,35 @@ class OutletPhone(models.Model):
 
 
 class WaiterOrderID(models.Model):
-    waiterID = models.ForeignKey(Waiter, on_delete=models.CASCADE,)  # int
-    orderID = models.ForeignKey(Bill, on_delete=models.CASCADE, )  # int
+    waiterID = models.ForeignKey(Waiter, on_delete = models.CASCADE,)  # int
+    orderID = models.ForeignKey(Bill, on_delete = models.CASCADE, )  # int
 
     class Meta:
         unique_together = (("waiterID", "orderID"))
 
 
 class ItemDetails(models.Model):
-    itemID = models.AutoField(primary_key=True)  # int
-    itemName = models.CharField(max_length=200)        # varchar(20)
+    itemID = models.AutoField(primary_key = True)  # int
+    itemName = models.CharField(max_length = 200)        # varchar(20)
     itemPrice = models.FloatField()  # int
-    itemDescription = models.CharField(max_length=300)  # varchar(200)
+    itemDescription = models.CharField(max_length = 300)  # varchar(200)
     itemSize = models.PositiveIntegerField()  # int
-    outletID = models.ForeignKey(Outlet, on_delete=models.CASCADE)  # add
+    outletID = models.ForeignKey(Outlet, on_delete = models.CASCADE)  # add
 
     class Meta:
         constraints = [
             CheckConstraint(
-                check=Q(itemID__gt=0),
-                name='id3validation'
+                check = Q(itemID__gt = 0),
+                name = 'itemIDValidation'
             ),
 
             CheckConstraint(
-                check=Q(itemPrice__gt=0),
-                name='priceValidation'
+                check = Q(itemPrice__gt = 0),
+                name = 'itemPriceValidation'
             ),
             CheckConstraint(
-                check=Q(itemSize__gte=0) and Q(itemSize__lte=2),
-                name='sizeValidation'
+                check = Q(itemSize__gte = 0) and Q(itemSize__lte = 2),
+                name='itemSizeValidation'
             )
         ]
 
@@ -158,9 +154,9 @@ class ItemDetails(models.Model):
 
 
 class Inventory(models.Model):
-    materialID = models.AutoField(primary_key=True)  # int
+    materialID = models.AutoField(primary_key = True)  # int
     materialQty = models.FloatField()  # int
-    materialName = models.CharField(max_length=200)  # varchar(20)
+    materialName = models.CharField(max_length = 200)  # varchar(20)
     threshQty = models.FloatField()  # int
     costPrice = models.FloatField()  # int/float
     orderedStatus = models.BooleanField()  # boolean
@@ -171,22 +167,23 @@ class Inventory(models.Model):
     class Meta:
         constraints = [
             CheckConstraint(
-                check=Q(materialID__gt=0),
-                name='id4validation'
+                check = Q(materialID__gt = 0),
+                name = 'materialIDValidation'
             ),
 
             CheckConstraint(
-                check=Q(materialQty__gte=0),
-                name='mqtyvalidation'
+                check = Q(materialQty__gte = 0),
+                name = 'materialQtyValidation'
             ),
 
             CheckConstraint(
-                check=Q(threshQty__gt=0),
-                name='tqtyvalidation'
+                check = Q(threshQty__gt = 0),
+                name = 'threshQtyValidation'
             ),
+
             CheckConstraint(
-                check=Q(costPrice__gt=0),
-                name='cpvalidation'
+                check = Q(costPrice__gt = 0),
+                name = 'costPriceValidation'
             ),
 
         ]
@@ -202,15 +199,13 @@ class Inventory(models.Model):
 
     @property
     def distributorNames(self):
-        distributors = InventoryDistributor.objects.filter(
-            materialID=self.materialID).values('distributorName')
+        distributors = InventoryDistributor.objects.filter(materialID = self.materialID).values('distributorName')
         return distributors
 
 
 class InventoryDistributor(models.Model):
-    materialID = models.ForeignKey(
-        Inventory, on_delete=models.CASCADE, )  # int
-    distributorName = models.CharField(max_length=200)  # varchar(20)
+    materialID = models.ForeignKey(Inventory, on_delete = models.CASCADE)  # int
+    distributorName = models.CharField(max_length = 200)  # varchar(20)
 
     class Meta:
         unique_together = (("materialID", "distributorName"))
@@ -223,7 +218,7 @@ class InventoryDistributor(models.Model):
 class Creates(models.Model):
     # customerID = models.ForeignKey(CustomerInfo, on_delete = models.CASCADE, )      #int
     orderID = models.ForeignKey(Bill, models.CASCADE)  # int
-    itemID = models.ForeignKey(ItemDetails, on_delete=models.CASCADE, )  # int
+    itemID = models.ForeignKey(ItemDetails, on_delete = models.CASCADE)  # int
     itemQty = models.PositiveIntegerField()
 
     @property
@@ -242,7 +237,7 @@ class Creates(models.Model):
         unique_together = (("orderID", "itemID"))
         constraints = [
             CheckConstraint(
-                check=Q(itemQty__gte=0),
-                name='qtyvalidation'
+                check = Q(itemQty__gte = 0),
+                name = 'itemQtyValidation'
             ),
         ]
