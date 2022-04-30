@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.customerName}}{% endblock title %}
+
+{% block content %}
+<div class="article-entry">
+    <h2>{{ object.customerName }}</h2>
+    <p> {{ object.customerPhone }}</p>
+    <p>{{ object.registrationDate}}</p>
+    <p>{{object.waiterID}}</p>
+</div>
+<!-- {% if user.is_authenticated and user == article.author %} -->
+<p><a href="{% url 'customer_edit' article.pk %}">Edit</a></a></p>
+<p><a href="{% url 'customer_delete' article.pk %}">Delete</a></p>
+<!-- {% endif %} -->
+<p>Back to <a href="{% url 'customer_list' %}">All Customers</a></p>
+
+
+<!-- <div>
+    <h5>Comments</h5>
+    {% for comment in article.comments.all %}
+    <p>
+        <span class="font-weight-bold">
+            {{comment.author}} &middot;
+        </span>
+        {{ comment }}
+    </p>
+    {% endfor %}
+</div> -->
+
+{% endblock content %}

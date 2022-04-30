@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models import Q, CheckConstraint
+from django.urls import reverse
 # Create your models here.
 
 
@@ -60,6 +61,9 @@ class CustomerInfo(models.Model):
 
     def __str__(self):
         return self.customerName
+
+    def get_absolute_url(self):
+        return reverse('customer_detail', args = (str(self.id)))
 
 
 class Bill(models.Model):

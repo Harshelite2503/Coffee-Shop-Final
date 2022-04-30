@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Articles{% endblock title %}
+
+{% block content %}
+{% for customer in object_list %}
+    <div class="card">
+        <div class="card-header">
+            <span class="font-weight-bold"><a href="{% url 'customer_detail' customer.pk %}" style="color: rgb(43, 45, 47);">{{ customer.customerName }}</a></span>
+            <span class="text-muted"> {{ customer.customerPhone }} | {{ customer.registrationDate }}</span>
+            <a href = "{% url 'customer_edit' customer.pk %}">Edit</a> | <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
+        </div>
+        <!-- {% if user.is_authenticated and user == article.author %} -->
+        <!-- <div class="card-footer text-center text-muted">
+        <a href = "{% url 'customer_edit' customer.pk %}">Edit</a> | <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
+        </div> -->
+        <!-- {% endif %} -->
+    </div>
+    <br />
+    {% endfor %}
+
+{% endblock content %}
