@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Customer{% endblock title %}
+
+{% block content %}
+<h1>Remove Staff</h1>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure that you want to delete "{{ object.customerName }}"?</p>
+    <button type="submit" class="btn btn-danger ml-2">Confirm</button>
+    <a class="btn btn-light ml-2" href="{% url 'waiter_list' %}">Cancel</a>
+
+</form>
+
+{% endblock content %}

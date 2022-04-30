@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Waiter{% endblock title %}
+
+{% block content %}
+<br>
+
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">STARBUCKS : STAFF</p>
+</center>
+
+
+
+<table border="1" align="center" cellpadding="7" cellspacing='6'>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Outlet</th>
+    <!-- <th>Date of Registration </th>\ -->
+    <th>Update</th>
+    <th>View Details</th>
+    <th>Delete</th>
+    {% for waiter in object_list %}
+    <div>
+        <tr>
+            <td align="center" > {{ waiter.waiterID }}</td>
+            <td align="center" >
+                {{waiter.firstName}} {{waiter.lastName}}
+            </td>
+            <td align="center" > {{ waiter.outletID }}</td>
+            <!-- <td align="center">{{ customer.registrationDate }}
+            </td> -->
+            <td> <a href="{% url 'waiter_edit' waiter.pk %}" class="btn btn-warning"> Edit </a></td>
+            <td> <a href="{% url 'waiter_detail' waiter.pk %}" class="btn btn-primary"> View Details </a></td>
+            <td><a href="{% url 'waiter_delete' waiter.pk %}" class=" btn btn-danger">Delete</a></td>
+        </tr>
+    </div>
+    <!-- {% if user.is_authenticated and user == article.author %} -->
+    <!-- <div class="card-footer text-center text-muted">
+        <a href = "{% url 'customer_edit' customer.pk %}">Edit</a> | <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
+        </div> -->
+    <!-- {% endif %} -->
+
+
+    <br />
+    {% endfor %}
+</table>
+
+
+
+
+{% endblock content %}

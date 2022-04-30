@@ -1,22 +1,49 @@
 {% extends 'base.html' %}
 
-{% block title %}Articles{% endblock title %}
+{% block title %}Customers{% endblock title %}
 
 {% block content %}
-{% for customer in object_list %}
-    <div class="card">
-        <div class="card-header">
-            <span class="font-weight-bold"><a href="{% url 'customer_detail' customer.pk %}" style="color: rgb(43, 45, 47);">{{ customer.customerName }}</a></span>
-            <span class="text-muted"> {{ customer.customerPhone }} | {{ customer.registrationDate }}</span>
-            <a href = "{% url 'customer_edit' customer.pk %}">Edit</a> | <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
-        </div>
-        <!-- {% if user.is_authenticated and user == article.author %} -->
-        <!-- <div class="card-footer text-center text-muted">
+<br>
+
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">STARBUCKS : OUR CUSTOMERS</p>
+</center>
+
+
+
+<table border="1" align="center" cellpadding="7" cellspacing='6'>
+    <th>Name</th>
+    <th>Phone No</th>
+    <th>Date of Registration </th>\
+    <th>Update</th>
+    <th>View Details</th>
+    <th>Delete</th>
+    {% for customer in object_list %}
+    <div>
+        <tr>
+            <td align="center" class="font-weight-bold">
+                {{customer.customerName }}
+            </td>
+            <td align="center" class="text-muted"> {{ customer.customerPhone }}</td>
+            <td align="center">{{ customer.registrationDate }}
+            </td>
+            <td> <a href="{% url 'customer_edit' customer.pk %}" class="btn btn-warning"> Edit </a></td>
+            <td> <a href="{% url 'customer_detail' customer.pk %}" class="btn btn-primary"> View Details </a></td>
+            <td><a href="{% url 'customer_delete' customer.pk %}" class=" btn btn-danger">Delete</a></td>
+        </tr>
+    </div>
+    <!-- {% if user.is_authenticated and user == article.author %} -->
+    <!-- <div class="card-footer text-center text-muted">
         <a href = "{% url 'customer_edit' customer.pk %}">Edit</a> | <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
         </div> -->
-        <!-- {% endif %} -->
-    </div>
+    <!-- {% endif %} -->
+
+
     <br />
     {% endfor %}
+</table>
+
+
+
 
 {% endblock content %}
