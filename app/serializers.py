@@ -14,7 +14,7 @@ class BillInfoSerializer(serializers.ModelSerializer):
     phone = Bill.customerPhone
     class Meta:
         model = Bill
-        fields = ('orderID','customerName', 'customerPhone', 'cost', 'total')
+        fields = ('orderID', 'customerID', 'orderWaiter', 'orderDate', 'customerName', 'customerPhone', 'cost', 'total')
 
 class WaiterinfoSerializer(serializers.ModelSerializer):
     currentOrder = Waiter.currentOrder
@@ -27,4 +27,4 @@ class InventoryInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Inventory
         fields = ('materialID', 'materialName', 'materialQty', 'costPrice', 'checkQty', 'threshQty', 'distributorNames' , 'orderedStatus')
-
+        
