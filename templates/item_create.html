@@ -1,18 +1,15 @@
 {% extends 'base.html' %}
-{% block title %}New Customer{% endblock title %}
+{% block title %}New Menu Item{% endblock title %}
 
 {% block content %}
 <br>
 <center>
-    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">Adding New Waiter's Details</p>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">Adding New Menu Item</p>
 </center>
-<br><br>
-<!--  -->
-<!-- <h1>New Waiter</h1> -->
+<br>
 <form method="POST" align="center">
     {% csrf_token %}
     {{ form.as_p }}
-    <br>
     <button type="submit" class="btn btn-success ml-2">Submit</button>
 </form>
 {% endblock content %}

@@ -3,11 +3,19 @@
 {% block title %}Edit Staff{% endblock title %}
 
 {% block content %}
-<h1>Edit Staff</h1>
-<form method="post">{% csrf_token %}
+
+<br><br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial">Starbucks : Editing Waiter</p>
+</center>
+<br><br>
+
+<!-- <h1>Edit Staff</h1> -->
+<form method="post" align="center">{% csrf_token %}
     {{ form.as_p }}
-    <button type="submit" class="btn btn-info ml-2" >Update</button>
-<a class="btn btn-light ml-2" href="{% url 'waiter_list' %}">Cancel</a>
+    <br>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a class="btn btn-danger" href="{% url 'waiter_list' %}">Cancel</a>
 </form>
 
 {% endblock content %}

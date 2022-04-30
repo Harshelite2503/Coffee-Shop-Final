@@ -6,21 +6,25 @@
 <br>
 
 <center>
-    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">STARBUCKS : OUR CUSTOMERS</p>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">OUR CUSTOMERS</p>
 </center>
 
 
 
 <table border="1" align="center" cellpadding="7" cellspacing='6'>
+    <th>ID</th>
     <th>Name</th>
     <th>Phone No</th>
-    <th>Date of Registration </th>\
+    <th>Date of Registration </th>
     <th>Update</th>
     <th>View Details</th>
     <th>Delete</th>
     {% for customer in object_list %}
     <div>
         <tr>
+            <td align="center" class="font-weight-bold">
+                {{customer.customerID }}
+            </td>
             <td align="center" class="font-weight-bold">
                 {{customer.customerName }}
             </td>

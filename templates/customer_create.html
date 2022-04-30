@@ -2,8 +2,12 @@
 {% block title %}New Customer{% endblock title %}
 
 {% block content %}
-<h1>New Customer</h1>
-<form method="POST">
+<br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">Adding New Customer's Details</p>
+</center>
+<br>
+<form method="POST" align="center">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-success ml-2">Submit</button>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.itemName}}{% endblock title %}
+
+{% block content %}
+
+<br>
+
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">{{object.itemName}}'s Details</p>
+</center>
+<br>
+<br>
+<div class="article-entry">
+    <h4 align="center"> Item Name : {{ object.itemName }}</h2>
+        <h4 align="center"> Item Description : {{ object.itemDescription }}</p>
+            <h4 align="center"> Item Size : {{ object.itemSize}}</p>
+                <h4 align="center"> Item Price : {{object.itemPrice}}</p>
+                    <h4 align="center"> Available at : {{object.outletID}}</p>
+</div>
+<!-- {% if user.is_authenticated and user == article.author %} -->
+<p><a href="{% url 'item_edit' item.pk %}">Edit</a></a></p>
+<p><a href="{% url 'item_delete' item.pk %}">Delete</a></p>
+<!-- {% endif %} -->
+<br><br>
+<br>
+<h3 align="center" font-size: 40px> <a href="{% url 'item_list' %}" class="btn btn-warning"> Back
+        To All Menu Item </a>
+
+
+    <!-- <div>
+    <h5>Comments</h5>
+    {% for comment in article.comments.all %}
+    <p>
+        <span class="font-weight-bold">
+            {{comment.author}} &middot;
+        </span>
+        {{ comment }}
+    </p>
+    {% endfor %}
+</div> -->
+
+    {% endblock content %}

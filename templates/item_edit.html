@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}Edit Customer{% endblock title %}
+{% block title %}Edit Item{% endblock title %}
 
 {% block content %}
 
 <br><br>
 <center>
-    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial">Starbucks : Editing Customer</p>
+    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial">Starbucks : Editing Item</p>
 </center>
 
 <br>
@@ -16,7 +16,7 @@
     {{ form.as_p }}
     <br>
     <button type="submit" class="btn btn-primary">Update</button>
-    <a class="btn btn-danger" href="{% url 'customer_list' %}">Cancel</a>
+    <a class="btn btn-danger" href="{% url 'item_list' %}">Cancel</a>
 </form>
 
 {% endblock content %}

@@ -6,32 +6,35 @@
 <br>
 
 <center>
-    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">OUR STAFF</p>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">OUR MENU ITEMS</p>
 </center>
 
 
 
 <table border="1" align="center" cellpadding="7" cellspacing='6'>
     <th>ID</th>
-    <th>Name</th>
+    <th>Item Name</th>
+    <th>Item Price</th>
+    <th>Item Size </th>
     <th>Outlet</th>
-    <!-- <th>Date of Registration </th>\ -->
     <th>Update</th>
     <th>View Details</th>
     <th>Delete</th>
-    {% for waiter in object_list %}
+    {% for item in object_list %}
     <div>
         <tr>
-            <td align="center" > {{ waiter.waiterID }}</td>
+            <td align="center" > {{ item.itemID }}</td>
             <td align="center" >
-                {{waiter.firstName}} {{waiter.lastName}}
+                {{waiter.firstName}} {{item.itemName}}
             </td>
-            <td align="center" > {{ waiter.outletID }}</td>
+            <td align="center" > {{ item.itemPrice }}</td>
+            <td align="center" > {{ item.itemSize }}</td>
+            <td align="center" > {{ item.outletID }}</td>
             <!-- <td align="center">{{ customer.registrationDate }}
             </td> -->
-            <td> <a href="{% url 'waiter_edit' waiter.pk %}" class="btn btn-warning"> Edit </a></td>
-            <td> <a href="{% url 'waiter_detail' waiter.pk %}" class="btn btn-primary"> View Details </a></td>
-            <td><a href="{% url 'waiter_delete' waiter.pk %}" class=" btn btn-danger">Delete</a></td>
+            <td> <a href="{% url 'item_edit' item.pk %}" class="btn btn-warning"> Edit </a></td>
+            <td> <a href="{% url 'item_detail' item.pk %}" class="btn btn-primary"> View Details </a></td>
+            <td><a href="{% url 'item_delete' item.pk %}" class=" btn btn-danger">Delete</a></td>
         </tr>
     </div>
     <!-- {% if user.is_authenticated and user == article.author %} -->

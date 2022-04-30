@@ -3,12 +3,25 @@
 {% block title %}Delete Customer{% endblock title %}
 
 {% block content %}
-<h1>Delete Customer</h1>
-<form method="post">
+<br><br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial">Starbucks : Deleting Customer</p>
+</center>
+<br><br><br><br><br><br>
+<center>
+    <h3 style="color:rgb(236, 14, 14);font-size: 35px;" font face="Arial">Are you sure that you want to delete
+        {{object.customerName}}'s Details?</p>
+</center>
+
+
+
+<!-- <h1>Delete Customer</h1> -->
+<form method="post" align="center">
     {% csrf_token %}
-    <p>Are you sure that you want to delete "{{ object.customerName }}"?</p>
+    <!-- <p>Are you sure that you want to delete "{{ object.customerName }}"?</p> -->
+    <br><br>
     <button type="submit" class="btn btn-danger ml-2">Confirm</button>
-    <a class="btn btn-light ml-2" href="{% url 'customer_list' %}">Cancel</a>
+    <a class="btn btn-primary" href="{% url 'customer_list' %}">Cancel</a>
 
 </form>
 

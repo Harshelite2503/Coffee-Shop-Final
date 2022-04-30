@@ -25,7 +25,7 @@ class CustomerEditView(UpdateView):
      model = CustomerInfo
      template_name = 'customer_edit.html'
      fields = ('customerName' , 'customerPhone', 'waiterID')
-     success_url = reverse_lazy('customer_list')
+     # success_url = reverse_lazy('customer_list')
 
 class CustomerDeleteView(DeleteView):
      model = CustomerInfo
@@ -36,7 +36,7 @@ class CustomerCreateView(CreateView):
      model = CustomerInfo
      template_name = 'customer_create.html'
      fields = ('customerName' , 'customerPhone','waiterID')
-     success_url = reverse_lazy('customer_list')
+     # success_url = reverse_lazy('customer_list')
 
 ######################################################################################
 
@@ -63,7 +63,7 @@ class WaiterEditView(UpdateView):
      model = Waiter
      template_name = 'waiter_edit.html'
      fields = ('firstName' , 'lastName', 'outletID')
-     success_url = reverse_lazy('waiter_list')
+     # success_url = reverse_lazy('waiter_list')
 
 class WaiterDeleteView(DeleteView):
      model = Waiter
@@ -73,10 +73,39 @@ class WaiterDeleteView(DeleteView):
 class WaiterCreateView(CreateView):
      model = Waiter
      template_name = 'waiter_create.html'
-     fields = ('firstName' , 'LastName', 'outletID')
-     success_url = reverse_lazy('waiter_list')
+     fields = ('firstName' , 'lastName', 'outletID')
+     # success_url = reverse_lazy('waiter_list')
 
 ######################################################################################
+
+
+class ItemListView(ListView):
+     model = ItemDetails
+     template_name = 'item_list.html'
+
+class ItemDetailView(DetailView):
+     model = ItemDetails
+     template_name = 'item_detail.html'
+     # fields = ('firstName' , 'lastName', 'outletID')
+
+class ItemEditView(UpdateView):
+     model = ItemDetails
+     template_name = 'item_edit.html'
+     fields = ('itemName' , 'itemPrice', 'itemDescription', 'itemSize', 'outletID')
+     success_url = reverse_lazy('item_list')
+
+class ItemDeleteView(DeleteView):
+     model = ItemDetails
+     template_name = 'item_delete.html'
+     success_url = reverse_lazy('item_list')
+
+class ItemCreateView(CreateView):
+     model = ItemDetails
+     template_name = 'item_create.html'
+     fields = ('itemName' , 'itemPrice', 'itemDescription', 'itemSize', 'outletID')
+     success_url = reverse_lazy('item_list')
+
+#############################################################################################
 
 class InventoryList(generics.ListCreateAPIView):
     queryset = Inventory.objects.all()

@@ -51,7 +51,7 @@ class Waiter(models.Model):
         return Bill.objects.filter(orderWaiter = self.waiterID).values('orderID')
 
     def get_absolute_url(self):
-        return reverse('waiter_detail', args = (str(self.id)))
+        return reverse('waiter_detail', args = (str(self.waiterID)))
 
 
 class CustomerInfo(models.Model):
@@ -66,7 +66,7 @@ class CustomerInfo(models.Model):
         return self.customerName
 
     def get_absolute_url(self):
-        return reverse('customer_detail', args = (str(self.id)))
+        return reverse('customer_detail', args = (str(self.customerID)))
 
 
 class Bill(models.Model):
@@ -139,8 +139,8 @@ class ItemDetails(models.Model):
     itemSize = models.PositiveIntegerField()  # int
     outletID = models.ForeignKey(Outlet, on_delete = models.CASCADE)  # add
 
-    # def get_absolute_url(self):
-    #     return reverse('item_detail', args = (str(self.id)))
+    def get_absolute_url(self):
+        return reverse('item_detail', args = (str(self.itemID)))
 
     class Meta:
         constraints = [

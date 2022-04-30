@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
 
-{% block title %}{% endblock title %}
+{% block title %}Delete Menu Item{% endblock title %}
 
 {% block content %}
 <br><br>
 <center>
-    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial">Starbucks : Deleting Waiter</p>
+    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial">Starbucks : Deleting Menu Item</p>
 </center>
-
-<br><br><br>
+<br><br><br><br><br><br>
 <center>
     <h3 style="color:rgb(236, 14, 14);font-size: 35px;" font face="Arial">Are you sure that you want to delete
-        {{object.firstName}}'s Details?</p>
+        {{object.itemName}}'s Details?</p>
 </center>
 
 
-<!-- <h1>Remove Staff</h1> -->
+
+<!-- <h1>Delete Customer</h1> -->
 <form method="post" align="center">
     {% csrf_token %}
     <!-- <p>Are you sure that you want to delete "{{ object.customerName }}"?</p> -->
     <br><br>
     <button type="submit" class="btn btn-danger ml-2">Confirm</button>
-    <a class="btn btn-primary" href="{% url 'waiter_list' %}">Cancel</a>
+    <a class="btn btn-primary" href="{% url 'item_list' %}">Cancel</a>
 
 </form>
 
