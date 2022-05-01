@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}New Inventory Item{% endblock title %}
+
+{% block content %}
+<br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">Adding New Inventory Item's Details</p>
+</center>
+<br>
+<form method="POST" align="center">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success ml-2">Submit</button>
+</form>
+{% endblock content %}

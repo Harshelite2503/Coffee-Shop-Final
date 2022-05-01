@@ -107,13 +107,31 @@ class ItemCreateView(CreateView):
 
 #############################################################################################
 
-class InventoryList(generics.ListCreateAPIView):
-    queryset = Inventory.objects.all()
-    serializer_class = InventoryInfoSerializer
+class InventoryListView(ListView):
+     model = Inventory
+     template_name = 'inventory_list.html'
 
-class InventoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Inventory.objects.all()
-    serializer_class = InventoryInfoSerializer
+class InventoryDetailView(DetailView):
+     model = Inventory
+     template_name = 'inventory_detail.html'
+     # fields = ('firstName' , 'lastName', 'outletID')
+
+class InventoryEditView(UpdateView):
+     model = Inventory
+     template_name = 'inventory_edit.html'
+     fields = ('materialID' , 'materialName', 'materialQty', 'threshQty', 'costPrice', 'orderedStatus')
+     success_url = reverse_lazy('inventory_list')
+
+class InventoryDeleteView(DeleteView):
+     model = Inventory
+     template_name = 'inventory_delete.html'
+     success_url = reverse_lazy('inventory_list')
+
+class InventoryCreateView(CreateView):
+     model = Inventory
+     template_name = 'inventory_create.html'
+     fields = ('materialID' , 'materialName', 'materialQty', 'threshQty', 'costPrice', 'orderedStatus')
+     success_url = reverse_lazy('inventory_list')
 
 
 

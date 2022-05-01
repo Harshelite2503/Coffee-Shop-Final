@@ -13,7 +13,15 @@
     <h4 align="center"> Waiter ID : {{object.waiterID}}</h2>
         <h4 align="center"> Waiter Name : {{ object.firstName }} {{waiter.lastName}}</p>
             <h4 align="center"> outletID : {{ object.outletID }}</p>
-                <h4 align="center"> CurrentOrders : {{object.currentOrder}}</p>
+                
+                    <h4 align="center"> Handling Current Orders : 
+                        {% for x in object.currentOrder %}
+                        {% if forloop.last %}
+                        Order No. {{ x }}
+                        {% else %}
+                        Order No. {{ x }},
+                        {% endif %}
+                        {% endfor %}</p>
                     <!-- <p>{{ object.registrationDate}}</p> -->
 
 </div>

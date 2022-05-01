@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CustomerCreateView, CustomerDeleteView, CustomerDetailView, CustomerEditView, BillList,BillDetails, CustomerListView, ItemCreateView, ItemDeleteView, ItemDetailView, ItemEditView, ItemListView, WaiterCreateView, WaiterDeleteView, WaiterDetailView, WaiterEditView, InventoryList, InventoryDetail, WaiterListView
+from .views import CustomerCreateView, CustomerDeleteView, CustomerDetailView, CustomerEditView, BillList,BillDetails, CustomerListView, InventoryCreateView, InventoryDeleteView, InventoryDetailView, InventoryEditView, InventoryListView, ItemCreateView, ItemDeleteView, ItemDetailView, ItemEditView, ItemListView, WaiterCreateView, WaiterDeleteView, WaiterDetailView, WaiterEditView, WaiterListView
 
 urlpatterns = [
     path('customers/<int:pk>/', CustomerDetailView.as_view(), name = 'customer_detail'),
@@ -22,8 +22,12 @@ urlpatterns = [
     path('item/add/' ,ItemCreateView.as_view(), name = 'item_create'),
     path('item/<int:pk>/edit/' ,ItemEditView.as_view(), name = 'item_edit'),
     path('item/<int:pk>/delete/' ,ItemDeleteView.as_view(), name = 'item_delete'),
+
+    path('inventory/<int:pk>/', InventoryDetailView.as_view(), name = 'inventory_detail'),
+    path('inventory/', InventoryListView.as_view(),name = 'inventory_list'),
+    path('inventory/add/' ,InventoryCreateView.as_view(), name = 'inventory_create'),
+    path('inventory/<int:pk>/edit/' ,InventoryEditView.as_view(), name = 'inventory_edit'),
+    path('inventory/<int:pk>/delete/' ,InventoryDeleteView.as_view(), name = 'inventory_delete'),
     
-    path('inventory/', InventoryList.as_view() ),
-    path('inventory/<int:pk>', InventoryDetail.as_view()),
     
 ]

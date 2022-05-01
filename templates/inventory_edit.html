@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Inventory Item{% endblock title %}
+
+{% block content %}
+
+<br><br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 40px;" font face="Arial"> Editing Inventory Item</p>
+</center>
+
+<br>
+<br>
+<!-- <h1>Edit Customer</h1> -->
+<form method="post" align="center">{% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a class="btn btn-danger" href="{% url 'inventory_list' %}">Cancel</a>
+</form>
+
+{% endblock content %}

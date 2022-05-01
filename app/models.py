@@ -48,7 +48,12 @@ class Waiter(models.Model):
 
     @property
     def currentOrder(self):
-        return Bill.objects.filter(orderWaiter = self.waiterID).values('orderID')
+        orders = Bill.objects.filter(orderWaiter = self.waiterID).values('orderID')
+        orders = list(orders)
+        result = list()
+        for i in orders:
+            result.append(i.get('orderID'))
+        return result
 
     def get_absolute_url(self):
         return reverse('waiter_detail', args = (str(self.waiterID)))
@@ -210,7 +215,14 @@ class Inventory(models.Model):
     @property
     def distributorNames(self):
         distributors = InventoryDistributor.objects.filter(materialID = self.materialID).values('distributorName')
-        return distributors
+        distributors = list(distributors)
+        ans = list()
+        for i in distributors:
+            ans.append(i.get('distributorName'))
+        return ans
+
+    def get_absolute_url(self):
+        return reverse('inventory_detail', args = (str(self.materialID)))
 
 
 class InventoryDistributor(models.Model):
