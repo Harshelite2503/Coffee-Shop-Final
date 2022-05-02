@@ -3,7 +3,7 @@ from rest_framework import generics
 from .models import CustomerInfo, Bill, Outlet, OutletPhone, Waiter, WaiterOrderID, ItemDetails, Inventory, InventoryDistributor,Creates
 # from .serializers import CustomerInfoSerializer,BillInfoSerializer, InventoryInfoSerializer, WaiterinfoSerializer
 # Create your views here.
-from django.views.generic import ListView,UpdateView,DeleteView,DetailView,CreateView
+from django.views.generic import ListView,UpdateView,DeleteView,DetailView,CreateView, TemplateView
 from django.urls import reverse_lazy
 # class CustomerList(generics.ListCreateAPIView):
 #     queryset = CustomerInfo.objects.all()
@@ -12,6 +12,12 @@ from django.urls import reverse_lazy
 # class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = CustomerInfo.objects.all()
 #     serializer_class = CustomerInfoSerializer
+
+class HomePageView(TemplateView):
+     template_name = 'home.html'
+
+class ContactPageView(TemplateView):
+     template_name = 'contact.html'
 
 class CustomerListView(ListView):
      model = CustomerInfo

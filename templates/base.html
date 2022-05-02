@@ -18,7 +18,7 @@
 <body>
     <div class="container-fluid p-0 nav-bar">
         <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3">
-            <a href="index.html" class="navbar-brand px-lg-4 m-0">
+            <a href="#" class="navbar-brand px-lg-4 m-0">
                 <h1 class="m-0 display-6 text-uppercase text-white">StarBucks</h1>
             </a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -26,11 +26,36 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Menu</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="{% url 'item_list' %}" class="dropdown-item">View All Menu Items</a>
+                            <a href="{% url 'item_create' %}" class="dropdown-item">Add a New Menu Item</a>
+                        </div>
+                    </div>    
+
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Waiter</a>
+                            <div class="dropdown-menu text-capitalize">
+                                <a href="{% url 'waiter_list' %}" class="dropdown-item">View All Waiter</a>
+                                <a href="{% url 'waiter_create' %}" class="dropdown-item">Add a New Waiter</a>
+                            </div>
+                        </div>
+                        
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Inventory</a>
+                        <div class="dropdown-menu text-capitalize">
+                            <a href="{% url 'inventory_list' %}" class="dropdown-item">View All Inventory</a>
+                            <a href="{% url 'inventory_create' %}" class="dropdown-item">Add New Inventory</a>
+                            <a href="{% url 'distributor_create' %}" class="dropdown-item">Add New Distributor</a>
+                        </div>
+                    </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Bill</a>
                         <div class="dropdown-menu text-capitalize">
-                            <a href="{% url 'bill_list' %}" class="dropdown-item">View All Bills</a>
+                            <a href="#" class="dropdown-item">View</a>
                             <a href="{% url 'bill_create' %}" class="dropdown-item">Create New Bill</a>
                         </div>
                     </div>
@@ -43,30 +68,8 @@
                         </div>
                     </div>
 
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Inventory</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="{% url 'inventory_list' %}" class="dropdown-item">View All Inventory</a>
-                            <a href="{% url 'inventory_create' %}" class="dropdown-item">Add New Inventory</a>
-                            <a href="{% url 'distributor_create' %}" class="dropdown-item">Add New Distributor</a>
-                        </div>
-                    </div>
 
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Menu</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="{% url 'item_list' %}" class="dropdown-item">View All Menu Items</a>
-                            <a href="{% url 'item_create' %}" class="dropdown-item">Add a New Menu Item</a>
-                        </div>
-                    </div>
 
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Waiter</a>
-                        <div class="dropdown-menu text-capitalize">
-                            <a href="{% url 'waiter_list' %}" class="dropdown-item">View All Waiter</a>
-                            <a href="{% url 'waiter_create' %}" class="dropdown-item">Add a New Waiter</a>
-                        </div>
-                    </div>
 
                     <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -78,7 +81,7 @@
 
 
 
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="/contact" class="nav-item nav-link">Contact</a>
                 </div>
             </div>
         </nav>

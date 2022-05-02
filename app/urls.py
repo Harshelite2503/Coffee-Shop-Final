@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import BillAddView, BillCreateView, BillDeleteView, BillDetailView, BillListView, CustomerCreateView, CustomerDeleteView, CustomerDetailView, CustomerEditView,CustomerListView, DistributorCreateView, InventoryCreateView, InventoryDeleteView, InventoryDetailView, InventoryEditView, InventoryListView, ItemCreateView, ItemDeleteView, ItemDetailView, ItemEditView, ItemListView, WaiterCreateView, WaiterDeleteView, WaiterDetailView, WaiterEditView, WaiterListView
-
+from django.views.generic import ListView,UpdateView,DeleteView,DetailView,CreateView
+from .views import BillAddView, BillCreateView, BillDeleteView, BillDetailView, BillListView, CustomerCreateView, CustomerDeleteView, CustomerDetailView, CustomerEditView,CustomerListView, DistributorCreateView, InventoryCreateView, InventoryDeleteView, InventoryDetailView, InventoryEditView, InventoryListView, ItemCreateView, ItemDeleteView, ItemDetailView, ItemEditView, ItemListView, WaiterCreateView, WaiterDeleteView, WaiterDetailView, WaiterEditView, WaiterListView, HomePageView, ContactPageView
 urlpatterns = [
+    path('', HomePageView.as_view(), name = 'home'),
+    path('contact', ContactPageView.as_view(), name = 'contact'),
     path('customers/<int:pk>/', CustomerDetailView.as_view(), name = 'customer_detail'),
     path('customers/', CustomerListView.as_view(),name = 'customer_list'),
     path('customers/add/' ,CustomerCreateView.as_view(), name = 'customer_create'),
