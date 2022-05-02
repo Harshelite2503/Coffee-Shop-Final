@@ -31,7 +31,7 @@
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Bill</a>
                         <div class="dropdown-menu text-capitalize">
                             <a href="#" class="dropdown-item">View</a>
-                            <a href="#" class="dropdown-item">Create New Bill</a>
+                            <a href="{% url 'bill_create' %}" class="dropdown-item">Create New Bill</a>
                         </div>
                     </div>
 
@@ -48,6 +48,7 @@
                         <div class="dropdown-menu text-capitalize">
                             <a href="{% url 'inventory_list' %}" class="dropdown-item">View All Inventory</a>
                             <a href="{% url 'inventory_create' %}" class="dropdown-item">Add New Inventory</a>
+                            <a href="{% url 'distributor_create' %}" class="dropdown-item">Add New Distributor</a>
                         </div>
                     </div>
 

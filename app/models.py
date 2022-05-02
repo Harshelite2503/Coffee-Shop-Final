@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models import Q, CheckConstraint
 from django.urls import reverse
 # Create your models here.
-
+ORDER = 0
 
 class Outlet(models.Model):
     outletID = models.AutoField(primary_key = True)  # int
@@ -80,6 +80,10 @@ class Bill(models.Model):
     orderWaiter = models.ForeignKey(Waiter, on_delete = models.CASCADE)  # int, get waiterID
     orderDate = models.DateField(auto_now = True)  # date
 
+    def __str__(self):
+        x = str(self.orderID) + ": " + str(self.customerID) + ": " + str(self.orderDate)
+        return x
+
     @property
     def customerName(self):
         return self.customerID.customerName
@@ -115,6 +119,17 @@ class Bill(models.Model):
         for k in l:
             sum = sum + k.get('costPerItem')
         return sum
+
+    # def setOrder(self):
+    #     print("Hello World")
+    #     ORDER = self.orderID
+    #     print('Order = ' + ORDER)
+
+    # def get_absolute_url(self):
+    #     last_elem = list([Bill.objects.latest('orderDate')])[-1].get('orderID')
+    #     #last_elem = a()[-1].get('orderID')
+    #     print("Hello      " + last_elem)
+    #     return reverse('bill_add', args = (str(last_elem)))
 
     class Meta:
         unique_together = (("orderID", "customerID"))
@@ -254,6 +269,12 @@ class Creates(models.Model):
     @property
     def costPerItem(self):
         return self.itemQty * self.itemPrice
+
+    @property
+    def getLatestOrder():
+         x = Bill.object.latest('orderDate')
+         
+         return
 
     class Meta:
         unique_together = (("orderID", "itemID"))

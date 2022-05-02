@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Add Items to Bill{% endblock title %}
+
+{% block content %}
+<br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">Adding items to your bill</p>
+</center>
+<br>
+<form method="POST" align="center">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success ml-2">Add More</button>
+    <a class="btn btn-primary" href="{% url 'customer_list' %}">Finish</a>
+</form>
+{% endblock content %}

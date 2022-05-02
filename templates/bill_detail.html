@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.customerName}}{% endblock title %}
+
+{% block content %}
+
+<br>
+
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">{{object.customerName}}'s Details</p>
+</center>
+<br>
+<br>
+<div class="article-entry">
+    <h4 align="center"> Name : {{ object.customerName }}</p>
+        <h4 align="center"> Contact No : {{ object.customerPhone }}</p>
+            <h4 align="center"> Registration Date : {{ object.registrationDate}}</p>
+                <h4 align="center"> Waiter Assigned : {{object.waiterID}}</p>
+</div>
+<!-- {% if user.is_authenticated and user == article.author %} -->
+<!-- <p><a href="{% url 'customer_edit' customer.pk %}">Edit</a></a></p> -->
+<p><a href="{% url 'bill_delete' bill.pk %}">Delete</a></p>
+<!-- {% endif %} -->
+<br><br>
+<br>
+<h3 align="center" font-size: 40px> <a href="{% url 'bill_list' %}" class="btn btn-warning"> Back
+        To All Bills </a>
+
+
+    <!-- <div>
+    <h5>Comments</h5>
+    {% for comment in article.comments.all %}
+    <p>
+        <span class="font-weight-bold">
+            {{comment.author}} &middot;
+        </span>
+        {{ comment }}
+    </p>
+    {% endfor %}
+</div> -->
+
+    {% endblock content %}

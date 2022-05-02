@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}New Bill{% endblock title %}
+
+{% block content %}
+<br>
+<center>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">Adding New Bill</p>
+</center>
+<br>
+<form method="POST" align="center">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success ml-2">Next</button>
+</form>
+{% endblock content %}

@@ -40,16 +40,6 @@ class CustomerCreateView(CreateView):
 
 ######################################################################################
 
-class BillList(generics.ListCreateAPIView):
-    queryset = Bill.objects.all()
-    serializer_class = BillInfoSerializer
-
-class BillDetails(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Bill.objects.all()
-    serializer_class = BillInfoSerializer
-
-#######################################################################################
-
 class WaiterListView(ListView):
      model = Waiter
      template_name = 'waiter_list.html'
@@ -132,6 +122,28 @@ class InventoryCreateView(CreateView):
      template_name = 'inventory_create.html'
      fields = ('materialID' , 'materialName', 'materialQty', 'threshQty', 'costPrice', 'orderedStatus')
      success_url = reverse_lazy('inventory_list')
+
+#############################################################################################################
+
+class BillCreateView(CreateView):
+     model = Bill
+     template_name = 'bill_create.html'
+     fields = ('customerID' , 'orderWaiter')
+     success_url = reverse_lazy('bill_add')
+     
+class BillAddView(CreateView):
+     model = Creates
+     template_name = 'bill_add.html'
+     fields = ('orderID', 'itemID', 'itemQty')
+     success_url = reverse_lazy('bill_add')
+
+
+class DistributorCreateView(CreateView):
+     model = InventoryDistributor
+     template_name = 'distributor_create.html'
+     fields = ('materialID', 'distributorName')
+     success_url = reverse_lazy('inventory_list')
+
 
 
 

@@ -18,12 +18,15 @@
             <h4 align="center"> Material Quantity : {{ object.materialQty}}</p>
                 <h4 align="center"> Cost Price : {{object.costPrice}}</p>
                     <h4 align="center"> Order Status : {{ object.checkQty }}</p>
+                        
                         <h4 align="center"> Distributors : 
+                            {% for x in object.distributorNames%}
                             {% if forloop.last %}
                             {{ x }}
                         {% else %}
                             {{ x }},
                             {% endif %}
+                            {% endfor %}
                         </p>
 </div>
 <!-- {% if user.is_authenticated and user == article.author %} -->
