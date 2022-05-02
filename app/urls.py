@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import BillAddView, BillCreateView, CustomerCreateView, CustomerDeleteView, CustomerDetailView, CustomerEditView,CustomerListView, DistributorCreateView, InventoryCreateView, InventoryDeleteView, InventoryDetailView, InventoryEditView, InventoryListView, ItemCreateView, ItemDeleteView, ItemDetailView, ItemEditView, ItemListView, WaiterCreateView, WaiterDeleteView, WaiterDetailView, WaiterEditView, WaiterListView
+from .views import BillAddView, BillCreateView, BillDeleteView, BillDetailView, BillListView, CustomerCreateView, CustomerDeleteView, CustomerDetailView, CustomerEditView,CustomerListView, DistributorCreateView, InventoryCreateView, InventoryDeleteView, InventoryDetailView, InventoryEditView, InventoryListView, ItemCreateView, ItemDeleteView, ItemDetailView, ItemEditView, ItemListView, WaiterCreateView, WaiterDeleteView, WaiterDetailView, WaiterEditView, WaiterListView
 
 urlpatterns = [
     path('customers/<int:pk>/', CustomerDetailView.as_view(), name = 'customer_detail'),
@@ -29,7 +29,11 @@ urlpatterns = [
     path('inventory/<int:pk>/edit/' ,InventoryEditView.as_view(), name = 'inventory_edit'),
     path('inventory/<int:pk>/delete/' ,InventoryDeleteView.as_view(), name = 'inventory_delete'),
     
+    path('bill/', BillListView.as_view(),name = 'bill_list'),
+    path('bill/<int:pk>/', BillDetailView.as_view(), name = 'bill_detail'),
+    path('bill/<int:pk>/delete/' ,BillDeleteView.as_view(), name = 'bill_delete'),
     path('bill/add/', BillCreateView.as_view(), name = 'bill_create'),
     path('bill/add/details/', BillAddView.as_view(), name = 'bill_add'),
+    
     path('distributors/add/', DistributorCreateView.as_view(), name = 'distributor_create'),
 ]

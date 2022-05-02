@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import CustomerInfo, Bill, Outlet, OutletPhone, Waiter, WaiterOrderID, ItemDetails, Inventory, InventoryDistributor,Creates
-from .serializers import CustomerInfoSerializer,BillInfoSerializer, InventoryInfoSerializer, WaiterinfoSerializer
+# from .serializers import CustomerInfoSerializer,BillInfoSerializer, InventoryInfoSerializer, WaiterinfoSerializer
 # Create your views here.
 from django.views.generic import ListView,UpdateView,DeleteView,DetailView,CreateView
 from django.urls import reverse_lazy
@@ -137,6 +137,20 @@ class BillAddView(CreateView):
      fields = ('orderID', 'itemID', 'itemQty')
      success_url = reverse_lazy('bill_add')
 
+class BillListView(ListView):
+     model = Bill
+     template_name = 'bill_list.html'
+
+class BillDetailView(DetailView):
+     model = Bill
+     template_name = 'bill_detail.html'
+     
+class BillDeleteView(DeleteView):
+     model = Bill
+     template_name = 'bill_delete.html'
+     success_url = reverse_lazy('bill_list')
+
+##############################################################################################################
 
 class DistributorCreateView(CreateView):
      model = InventoryDistributor

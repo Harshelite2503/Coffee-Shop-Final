@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Customers{% endblock title %}
+{% block title %}Bills{% endblock title %}
 
 {% block content %}
 <br>
@@ -35,17 +35,10 @@
             
         
             <td> <a href="{% url 'bill_detail' bill.pk %}" class="btn btn-primary"> View Details </a></td>
-            <td><a href="{% url 'bill_delete' bill.pk %}" class=" btn btn-danger">Delete</a></td>
+            <td><a href="{% url 'bill_delete' bill.pk %}" class=" btn btn-danger"> Delete </a></td>
         </tr>
     </div>
-    <!-- {% if user.is_authenticated and user == article.author %} -->
-    <!-- <div class="card-footer text-center text-muted">
-        <a href = "{% url 'customer_edit' customer.pk %}">Edit</a> | <a href="{% url 'customer_delete' customer.pk %}">Delete</a>
-        </div> -->
-    <!-- {% endif %} -->
 
-
-    <br />
     {% endfor %}
 </table>
 

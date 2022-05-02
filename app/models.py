@@ -108,18 +108,31 @@ class Bill(models.Model):
                 i['itemPrice'] = j.get('itemPrice')
                 i['itemName'] = j.get('itemName')
                 i['costPerItem'] = i.get('itemPrice') * i.get('itemQty')
-
-        # print(buffer)
-        return buffer
+        print(buffer)
+        buffer_3 = []
+        for v in buffer:
+            g = []
+            g.append(v.get('itemID'))
+            g.append(v.get('itemName'))
+            g.append(v.get('itemPrice'))
+            g.append(v.get('itemQty'))
+            g.append(v.get('costPerItem'))
+            buffer_3.append(g)
+        
+        print(buffer_3)
+        return buffer_3
 
     @property
     def total(self):
         l = self.cost
         sum = 0.00
         for k in l:
-            sum = sum + k.get('costPerItem')
+            sum = sum + k[4]
         return sum
-
+    
+    @property
+    def waiterName(self):
+        return (self.orderWaiter.firstName +" "+ self.orderWaiter.lastName)
     # def setOrder(self):
     #     print("Hello World")
     #     ORDER = self.orderID

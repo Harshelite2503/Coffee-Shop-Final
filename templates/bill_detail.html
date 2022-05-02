@@ -1,25 +1,50 @@
 {% extends 'base.html' %}
 
-{% block title %}{{object.customerName}}{% endblock title %}
+{% block title %}{{object.customerName}} 's Bill{% endblock title %}
 
 {% block content %}
 
 <br>
 
 <center>
-    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">{{object.customerName}}'s Details</p>
+    <h2 style="color:rgb(126, 11, 11);font-size: 35px;" font face="Arial">{{object.customerName}}'s Bill</p>
 </center>
 <br>
 <br>
 <div class="article-entry">
-    <h4 align="center"> Name : {{ object.customerName }}</p>
-        <h4 align="center"> Contact No : {{ object.customerPhone }}</p>
-            <h4 align="center"> Registration Date : {{ object.registrationDate}}</p>
-                <h4 align="center"> Waiter Assigned : {{object.waiterID}}</p>
+    <table border="1" align="center" cellpadding="7" cellspacing='6'>
+    <tr> <td align="center" class="font-weight-bold" colspan="5">STARBUCKS</td></tr>
+    <tr><td align="center" class="font-weight-bold" colspan="2">Name : {{ object.customerName }}</td> <td align="center" class="font-weight-bold"colspan="3">Date : {{object.orderDate}}</td></tr>
+    <tr><td align="center" class="font-weight-bold" colspan="2">Contact No. : {{object.customerPhone}}</td><td align="center" class="font-weight-bold" colspan="3">Served by: {{object.waiterName}} </td></tr>
+    <th align="center">Item ID</th><th align="center">Item Name</th><th>Item Price</th><th>Quantity</th><th>Cost</th>
+    {% for x in object.cost %}
+    <tr>
+        {% for y in x %}
+            <td align="center" class="font-weight-bold">{{y}}</td>
+        {% endfor %}  
+    </tr>
+    {% endfor %}  
+    <!-- <tr><td align="center" class="font-weight-bold" colspan = "2"></td> -->
+        <td align="left" class="font-weight-bold" colspan="4">Total </td>
+        <td align="right" class="font-weight-bold" colspan="2">{{object.total}}</td>
+
+    </table>
+    <br>
+    <br>
+    <center>
+        <h3 font-family = "Roboto">Thank you, Please visit us again! :)</h3>
+    </center>
 </div>
+
+
+
+
+
 <!-- {% if user.is_authenticated and user == article.author %} -->
 <!-- <p><a href="{% url 'customer_edit' customer.pk %}">Edit</a></a></p> -->
-<p><a href="{% url 'bill_delete' bill.pk %}">Delete</a></p>
+<!-- <p><a href="{% url 'bill_delete' bill.pk %}">Delete</a></p> -->
+Delete Bill
+<h3 align="center" font-size: 40px> <a href="{% url 'bill_delete' bill.pk %}" class="btn btn-danger"> Delete Bill </a>
 <!-- {% endif %} -->
 <br><br>
 <br>
